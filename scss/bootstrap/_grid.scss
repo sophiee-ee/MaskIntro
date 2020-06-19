@@ -1,0 +1,47 @@
+// about-me-container widths
+//
+// Set the about-me-container width, and override it for fixed navbars in media queries.
+@if $enable-grid-classes {
+    .about-me-container {
+        @include make-about-me-container();
+        @include make-about-me-container-max-widths();
+    }
+}
+
+// Fluid about-me-container
+//
+// Utilizes the mixin meant for fixed width about-me-containers, but with 100% width for
+// fluid, full width layouts.
+@if $enable-grid-classes {
+    .about-me-container-fluid {
+        width: 100%;
+        @include make-about-me-container();
+    }
+}
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+@if $enable-grid-classes {
+    .row {
+        @include make-row();
+    }
+    // Remove the negative margin from default .row, then the horizontal padding
+    // from all immediate children columns (to prevent runaway style inheritance).
+    .no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+        >.col,
+        >[class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+@if $enable-grid-classes {
+    @include make-grid-columns();
+}
